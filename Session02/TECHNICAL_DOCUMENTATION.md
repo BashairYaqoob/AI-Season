@@ -1,5 +1,6 @@
 # Wanderfolk – AI Travel Planner
 ## Technical Documentation
+Project link: https://github.com/BashairYaqoob/wandererfolk
 
 ## Project Overview
 
