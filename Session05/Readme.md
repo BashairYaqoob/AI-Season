@@ -214,3 +214,7 @@ All demo scripts follow **one repeating pattern**:
 - VLMs are today's standard architecture for combining vision + language.
 - Multimodal RAG follows the same storage → query → retrieval → generation loop as text RAG, just extended to images/audio/video/PDFs.
 - Tool calling is what turns a multimodal model into an **agent**: it can perceive (OCR, image, speech), fetch (web, DB, maps), and act (Python, calendar, email) — not just talk.
+
+---
+Gemini 2.5 flash --> multi modal
+Gemini 3.1 flash lite --> vlm
