@@ -36,32 +36,76 @@ A Multimodal Retrieval-Augmented Generation (RAG) system built in Python that us
 
 ```
 .
-├── AttentionIsAllYouNeed.pdf
-├── multimodal_rag.py
+├── app.py                      # Streamlit UI (imports multimodal_rag.py, doesn't modify it)
+├── multimodal_rag.py            # Core backend: extraction, embedding, retrieval, generation
 ├── requirements.txt
-├── .env
-├── .gitignore
-├── images/
-└── chroma_db/
+├── AttentionIsAllYouNeed.pdf    # source document (not included — add your own copy)
+├── images/                      # extracted figures (generated at runtime)
+├── chroma_db/                   # persistent vector store (generated at runtime)
+└── .env                         # GEMINI_API_KEY=... (not committed)
 ```
 
 ---
 
 ## Pipeline
 
-1. Load the research paper.
-2. Extract:
-   - Text
-   - Headings
-   - Tables
-   - Figures
-3. Describe figures using Gemini Vision.
-4. Generate embeddings for every extracted document.
-5. Store embeddings inside ChromaDB.
-6. Embed the user's question.
-7. Retrieve the most relevant chunks.
-8. Generate a grounded answer using only the retrieved context.
+### 1. Extraction
 
+Content typeMethodText / headingsPyMuPDF (fitz), using font size (≥14pt) to separate headings from body textTablespdfplumber, flattened into pipe-delimited rows (`cellFiguresPyMuPDF pulls image xrefs page by page, saved as PNGs
+
+### 2. Figure understanding
+
+Each extracted image is passed to Gemini (gemini-3.1-flash-lite) with a prompt asking for:
+
+figure title (if visible)
+what the figure represents
+architecture or workflow
+mathematical concepts
+labels and arrows
+relationships between components
+key observations
+what questions the figure could answer
+
+
+This turns each figure into a text description that can be embedded and retrieved like any other chunk.
+
+### 3. Chunking
+
+
+Body text: RecursiveCharacterTextSplitter (LangChain) — 800 char chunks, 100 char overlap.
+Tables and figure descriptions: kept as single units (not split), since breaking them up would lose their meaning.
+
+
+### 4. Embedding
+
+All chunks (text, table, figure) are embedded with Gemini's gemini-embedding-001 model and stored together — one shared vector space across all three modalities.
+
+### 5. Storage
+
+Embeddings + metadata (type, page, path, source) are stored in a persistent ChromaDB collection (chroma_db/, collection name attention_paper). Metadata makes every retrieved chunk traceable back to its page and content type.
+
+### 6. Retrieval
+
+The query is embedded with the same embedding model, then ChromaDB returns the top-k nearest chunks by similarity (k is configurable, default 5).
+
+### 7. Generation
+
+Retrieved chunks are passed to Gemini (gemini-3.1-flash-lite) as context, with instructions to:
+
+answer only from the retrieved context
+not use outside knowledge
+reply "The retrieved context does not contain enough information" if the answer isn't there
+mention relevant page numbers
+
+
+## Tech stack:
+
+LLM / Vision / Embeddings: Gemini API (google-genai) — gemini-3.1-flash-lite for generation and vision, gemini-embedding-001 for embeddings
+Vector store: ChromaDB (persistent client)
+PDF parsing: PyMuPDF (fitz) for text/headings/images, pdfplumber for tables
+Chunking: langchain-text-splitters
+UI: Streamlit
+Other: python-dotenv, Pillow, numpy
 ---
 
 ## Example Queries
