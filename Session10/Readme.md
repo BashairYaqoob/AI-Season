@@ -4,7 +4,7 @@ A Self-contained Python demos for a live AI security & guardrails session. Each 
 
 **LLM provider:** [Groq](https://console.groq.com/keys) via the OpenAI-compatible SDK.
 
-**Live teaching:** see `[INSTRUCTOR-RUNBOOK.md](INSTRUCTOR-RUNBOOK.md)` for per-demo run commands and instructor callouts.
+**Live teaching:** see `[INSTRUCTOR-RUNBOOK.md](INSTRUCTOR-RUNBOOK.md)` for per-demo run commands and instructor callouts
 
 ## Demo index
 
