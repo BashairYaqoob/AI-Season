@@ -1,6 +1,6 @@
 # AI Security Demos
 
-Self-contained Python demos for a live AI security & guardrails session. Each folder runs standalone. Build demos with the Cursor prompts in `../prompts/cursor/` (01–08) after this setup.
+A Self-contained Python demos for a live AI security & guardrails session. Each folder runs standalone. Build demos with the Cursor prompts in `../prompts/cursor/` (01–08) after this setup.
 
 **LLM provider:** [Groq](https://console.groq.com/keys) via the OpenAI-compatible SDK.
 
