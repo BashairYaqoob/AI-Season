@@ -1,0 +1,29 @@
+{
+  "name": "appointment-booking-agent-vapi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Voice Appointment Booking Agent — monorepo (client, server, shared types)",
+  "workspaces": [
+    "client",
+    "server",
+    "packages/types"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,green \"cross-env NODE_OPTIONS= npm run dev -w server\" \"cross-env NODE_OPTIONS= npm run dev:client:delayed\"",
+    "dev:server": "cross-env NODE_OPTIONS= npm run dev -w server",
+    "dev:client": "cross-env NODE_OPTIONS= npm run dev -w client",
+    "dev:client:delayed": "wait-on -t 120000 tcp:127.0.0.1:5000 && npm run dev -w client",
+    "build": "npm run build -w packages/types && npm run build -w server && npm run build -w client",
+    "build:server": "npm run build -w server",
+    "build:client": "npm run build -w client",
+    "seed": "npm run seed -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "wait-on": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
