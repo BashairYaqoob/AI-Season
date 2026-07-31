@@ -7,7 +7,7 @@ freebuff
 
 ## What it is
 
-An agent harness is the loop that connects an LLM (brain) to tools (hands), with memory,
+An agent harness is the loop that connects an LLM (brain) to tools (hands), with memory, 
 so it can *actually do things* rather than just generate text.
 
 ## Checkpoints (build order)
