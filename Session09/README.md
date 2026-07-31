@@ -1,7 +1,6 @@
 # ARGPT — build a language model from scratch
 
-Sessions 1 to 6 you called somebody else's LLM. This time you build one, train it
-on a rented GPU, and put it behind your own URL.
+Sessions 1 to 6 you called somebody else's LLM. This time you build one, train it on a rented GPU, and put it behind your own URL.
 
 No `transformers`, no `langchain`, no pretrained weights. Just PyTorch and about
 700 lines you can read in one sitting.
