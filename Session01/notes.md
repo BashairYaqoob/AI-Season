@@ -1,5 +1,6 @@
 # AI Season Notes
 
+
 ## 1. The Big Picture
 ```text
 User
