@@ -1,4 +1,4 @@
-# ARGPT — build a language model from scratch
+# ARGPT — build a language model (LLM) from scratch
 
 Sessions 1 to 6 you called somebody else's LLM. This time you build one, train it on a rented GPU, and put it behind your own URL.
 
