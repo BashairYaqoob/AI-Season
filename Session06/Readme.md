@@ -2,7 +2,7 @@
 
 All demos use the **free Groq API** with **Llama 3.3 70B**. Get a free key here: https://console.groq.com/keys
 
-LangChain is not a new AI - it's a standard box of building blocks (prompts, models,
+LangChain is not a new AI - it's a standard box of building blocks (prompts, models, 
 memory, tools, retrievers) that wraps SDKs you've already used by hand, so you stop
 rewriting the same plumbing every project.
 
