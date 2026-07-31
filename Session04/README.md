@@ -3,7 +3,7 @@
 A 2-hour buildable **minimum viable agent harness** — built checkpoint by checkpoint.
 opencode
 mimo (code)
-freebuff
+freebuff 
 
 ## What it is
 
