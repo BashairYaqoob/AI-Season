@@ -2,6 +2,7 @@
 
 All demos use the **free Gemini API**. Get a free key here: https://aistudio.google.com/apikey
 
+
 ## Setup (one time)
 
 ```bash
